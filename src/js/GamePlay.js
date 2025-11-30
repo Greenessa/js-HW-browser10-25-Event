@@ -3,27 +3,28 @@ export default class GamePlay {
     this.playerScore = 0;
     this.goblinScore = 0;
     this.scoreLimit = 5;
-  }
+    this.handClick =this.onCellClick.bind(this);
+    }
 
   drawPlayField() {
     let boardEl = document.createElement("div");
     boardEl.classList.add("board");
     let contEl = document.querySelector(".board-container");
-    contEl.appendChild(boardEl);
+    contEl.append(boardEl);
     for (let index = 0; index < 16; index++) {
       let cellEl = document.createElement("div");
       cellEl.classList.add("A");
       // cellEl.addEventListener('click', event => this.onCellClick(event));
-      boardEl.appendChild(cellEl);
+      boardEl.append(cellEl);
     }
   }
   
   addEventListener = () => {
-    window.addEventListener('click', event => this.onCellClick(event));
+    window.addEventListener('click', this.handClick);
   }
   
   removeListener = () => {
-    window.removeEventListener('click', event => this.onCellClick(event));
+    window.removeEventListener('click', this.handClick);
   }
 
   lose () {
@@ -57,7 +58,7 @@ export default class GamePlay {
     let imgEl = document.createElement("img");
     imgEl.classList.add("goblin");
     let cellCollection = document.querySelectorAll(".A");
-    cellCollection[number].appendChild(imgEl);
+    cellCollection[number].append(imgEl);
   };
 
   removeImg = () => {
