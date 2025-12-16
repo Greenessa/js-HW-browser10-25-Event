@@ -3,8 +3,8 @@ export default class GamePlay {
     this.playerScore = 0;
     this.goblinScore = 0;
     this.scoreLimit = 5;
-    this.handClick =this.onCellClick.bind(this);
-    }
+    this.handClick = this.onCellClick.bind(this);
+  }
 
   drawPlayField() {
     let boardEl = document.createElement("div");
@@ -18,27 +18,27 @@ export default class GamePlay {
       boardEl.append(cellEl);
     }
   }
-  
+
   addEventListener = () => {
-    window.addEventListener('click', this.handClick);
-  }
-  
+    window.addEventListener("click", this.handClick);
+  };
+
   removeListener = () => {
-    window.removeEventListener('click', this.handClick);
+    window.removeEventListener("click", this.handClick);
+  };
+
+  lose() {
+    let loseMessageEl = document.createElement("h1");
+    loseMessageEl.classList.add("lose");
+    loseMessageEl.textContent = "Вы проиграли!";
+    let contEl = document.querySelector(".board-container");
+    contEl.before(loseMessageEl);
   }
 
-  lose () {
-    let loseMessageEl = document.createElement('h1');
-      loseMessageEl.classList.add('lose');
-      loseMessageEl.textContent = 'Вы проиграли!';
-      let contEl = document.querySelector(".board-container");
-      contEl.before(loseMessageEl);
-  }
-
-  win () {
-    let winMessageEl = document.createElement('h1');
-    winMessageEl.classList.add('win');
-    winMessageEl.textContent = 'Враг убит, Вы выиграли!';
+  win() {
+    let winMessageEl = document.createElement("h1");
+    winMessageEl.classList.add("win");
+    winMessageEl.textContent = "Враг убит, Вы выиграли!";
     let contEl = document.querySelector(".board-container");
     contEl.before(winMessageEl);
   }
@@ -47,10 +47,10 @@ export default class GamePlay {
     let clickEl = event.target;
     if (clickEl.classList.contains("goblin")) {
       this.playerScore += 1;
-      console.log('Очки игрока', this.playerScore);
+      console.log("Очки игрока", this.playerScore);
     } else {
       this.goblinScore += 1;
-      console.log('Очки гоблина', this.goblinScore);
+      console.log("Очки гоблина", this.goblinScore);
     }
   }
 
@@ -69,7 +69,10 @@ export default class GamePlay {
   };
 
   changePlace() {
-    if (this.playerScore < this.scoreLimit && this.goblinScore < this.scoreLimit) {
+    if (
+      this.playerScore < this.scoreLimit &&
+      this.goblinScore < this.scoreLimit
+    ) {
       this.removeImg();
       let number = Math.floor(Math.random() * 16);
       this.createImg(number);

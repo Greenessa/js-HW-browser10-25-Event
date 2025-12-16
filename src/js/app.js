@@ -1,6 +1,6 @@
 import GamePlay from "./GamePlay";
 
-const unusedVariable = "variable";
+// const unusedVariable = "variable";
 
 // for demonstration purpose only
 export default function demo(value) {
@@ -25,6 +25,3 @@ const IntervalId = setInterval(() => {
     clearInterval(IntervalId);
   }
 }, 1000);
-
-
-
